@@ -1,0 +1,105 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+double populationSize(double P, double B, double D, double A, double M);
+/*function prototype passes the following arguments:
+P for population, B for births, D for deaths, A for new arrivals, and M for departures*/
+
+int main() 
+{
+double populationStart; // hold starting population
+double peopleArrive; //hold new arrivals
+double annualBirths; //hold new births
+double annualDeaths; //hold deaths
+double peopleMovingout; //hold people leaving
+double ResultFunction; //hold value for function return as it relates to inputs above
+int numberofYears; //hold range of time for calculations
+ 
+cout << "This program calculates population change.\n";
+cout << "Enter the starting population size: \n";
+cin >> populationStart;
+
+	if(populationStart < 2) // if statement used for input validation
+		{
+		cout << "Starting population must be 2 or more.\n";
+		cout << "Please re-enter:\n";
+		cin >> populationStart;
+		}
+
+	cout << "Enter the annual birth rate (as % of current population):\n";
+	cin >> annualBirths;
+	
+		if(annualBirths < 0) 
+		{
+		cout << "Birth rate percent cannot be negative.\n";
+		cout << "Please re-enter:\n";
+		cin >> annualBirths;
+		}
+
+	
+	cout << " Enter the annual death rate (as % of current population):\n";
+	cin >> annualDeaths;
+
+		if(annualDeaths < 0)
+		{
+		cout << "Death rate percent cannot be negative.\n";
+		cout << "Please re-enter:\n";
+		cin >> annualDeaths;
+		}
+
+	cout << " How many individuals move into the area each year? \n";
+	cin >> peopleArrive;
+
+		if(peopleArrive < 0) 
+		{
+		cout << "Arrivals cannot be negative.\n";
+		cout << "Please re-enter:\n";
+		cin >> peopleArrive;
+		}
+
+	cout << "How many individuals leave the area each year? \n";
+	cin >> peopleMovingout;
+
+		if(peopleMovingout < 0) 
+		{
+	cout << "Departures cannot be negative.\n";
+	cout << "Please re-enter:\n";
+	cin >> peopleMovingout;
+		}
+
+	cout << "For how many years do you wish to view population changes? \n";
+	cin >> numberofYears;
+		
+	
+		if(numberofYears < 1) 
+		{
+	cout << "Years must be one or more.\n";
+	cout << "Please re-enter:\n";
+	cin >> numberofYears;
+		}
+	numberofYears++; // increment input value by one to get loop below to use all years in range(redundant. fix)
+ 
+	cout << "Starting population: "<<populationStart<< endl;
+	ResultFunction = populationStart; //just before function is called, this value is meant to hold the functions calculations after all input is collected
+	//preceding line is also redundant. fixme
+	
+		for(int yearResult = 1; yearResult < numberofYears;	yearResult++) // number of times the function will be called based on range of time set by user
+		{ 
+		ResultFunction = populationSize(ResultFunction, annualBirths, annualDeaths, peopleArrive, peopleMovingout);//determine pop change per year
+		cout << endl; //after inputs are taken, function is called with arguments being passed from the inputs into the parameters set by the function
+		cout << "Population at the end of year "<< setprecision(3) << yearResult <<" is "<< ResultFunction <<endl; // setprecision used to round up double int values' decimal output at end 
+		}
+ 
+return 0;
+}
+ 
+double populationSize(double P, double B, double D, double A, double M) // function header with parameters for passing arguments
+{
+
+double functionReturn; //to hold function's value-determining formula
+ 
+functionReturn = P + (B/100 * P) - (D/100 * P) + A - M; 
+ 
+return functionReturn; //returns values needed when called
+}

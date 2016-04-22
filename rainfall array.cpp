@@ -25,7 +25,7 @@ int main()
 
 	for (int increment=0; increment < numberofmonths; increment++) // based on numberofmonths being set as a constant int, this loop will run 12 times
 		{	
-			cout << "Please enter the rainfall for " << monthsarray[increment] <<": ";
+			cout << "Please enter the rainfall for " << monthsarray[increment] <<": "<<endl;
 			cin >> userdata[increment];//for each element, the user is prompted to enter rainfall for that particular month/element
 			
 			if (userdata[increment] < 0) // input validation to prevent a negative number being entered

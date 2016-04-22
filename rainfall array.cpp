@@ -9,8 +9,7 @@ string minimum_rainfall (double array_index[], string monthsarray[], int numbero
 double totalrainfunction (double array_index[], int numberofmonths);
 double averagerainfunction (double array_index[], int numberofmonths);
 
-void SortFunction (string array_index[], double monthsarray[], int numberofmonths); //new sorting function
-
+void SortFunction (string array_index[], double monthsarray[], int numberofmonths);
 
 int main()
 {
@@ -27,18 +26,16 @@ int main()
 	for (int increment=0; increment < numberofmonths; increment++) // based on numberofmonths being set as a constant int, this loop will run 12 times
 		{	
 			cout << "Please enter the rainfall for " << monthsarray[increment] <<": ";
-			cin >> userdata[increment];
+			cin >> userdata[increment];//for each element, the user is prompted to enter rainfall for that particular month/element
 			
-		
-		if (userdata[increment] < 0) // input validation to prevent a negative number being entered
+			if (userdata[increment] < 0) // input validation to prevent a negative number being entered
 			{
 				cout << "Invalid data (negative rainfall) -- retry\n";
 				cout << "Please re-enter the rainfall for " << monthsarray[increment] <<": ";
 				cin >> userdata[increment];
 			}
-	
 		}
-	// functions are used below
+	
 	monthmaxrain = maximum_rainfall(userdata, monthsarray, numberofmonths);
 	monthminrain = minimum_rainfall(userdata, monthsarray, numberofmonths);
 	totalrain = totalrainfunction(userdata, numberofmonths);
@@ -64,7 +61,7 @@ string maximum_rainfall (double array_index[], string monthsarray[], int numbero
 	for (int count=0; count < numberofmonths; count++)
 		if (array_index[count]>maximum) // highest number determined here
 		{
-			maximum=array_index[count]; // this portion uses the highest number and links it to array startScan
+			maximum=array_index[count]; // this portion uses the highest number and NO?links it to array startScanNO?
 			index_value=count;
 		}
 	return monthsarray[index_value]; //index_value returns element linked as highest number within array based on user input
@@ -78,7 +75,7 @@ string minimum_rainfall (double array_index[], string monthsarray[], int numbero
 	for (int count=0; count < numberofmonths; count++)
 			if (array_index[count]<minimum)
 			{
-				minimum=array_index[count]; //as previous function, except the lowest number is pointed to within array
+				minimum=array_index[count]; //as previous function, except the lowest number is determined
 				index_value=count;
 			}
 	return monthsarray[index_value];
